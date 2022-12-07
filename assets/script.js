@@ -1,10 +1,27 @@
 // for loop hour 9-17
 // determine past grey present red future green
 
-var saveButton = $('.saveBtn');
+
 
 $(function blockColor() {
  
+  var saveButton = $('.saveBtn');
+  var currentHour = dayjs().hour();
+ 
+  $('.description').each(function() {
+    $(this).parent().removeClass('past present future');
+    var divTime = parseInt($(this).parent().attr('id').replace('hour-', ''));
+
+    if (divTime < currentHour){
+      $(this).parent().addclass('past');
+    }else if(divTime == currentHour){
+      $(this).parent().addclass('present');
+    } else{
+      $(this).parent().addclass('future');
+    }
+
+  });
+
   $(saveButton).click(function() {
     var textInput = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id").split("-")[1];
@@ -20,8 +37,8 @@ $(function blockColor() {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  
+  
   var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMM D, YYYY'));
 });
