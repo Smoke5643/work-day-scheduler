@@ -6,18 +6,17 @@
 $(function blockColor() {
  
   var saveButton = $('.saveBtn');
-  var currentHour = dayjs().hour();
+  var currentHour = dayjs().subtract(5, 'hour').hour();
  
   $('.description').each(function() {
-    $(this).parent().removeClass('past present future');
-    var divTime = parseInt($(this).parent().attr('id').replace('hour-', ''));
-
+    // $(this).parent().removeClass('past present future');
+    var divTime = parseInt($(this).parent().attr('id').replace("hour-", ""));
     if (divTime < currentHour){
-      $(this).parent().addclass('past');
+      $(this).addClass('past');
     }else if(divTime == currentHour){
-      $(this).parent().addclass('present');
+      $(this).addClass('present');
     } else{
-      $(this).parent().addclass('future');
+      $(this).addClass('future');
     }
 
   });
