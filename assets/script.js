@@ -30,5 +30,5 @@ $(function blockColor() {
   
   
   var today = dayjs();
-$('#currentDay').text(today.format('dddd, MMM D, YYYY'));
+$('#currentDay').text(today.format('dddd, MMMM D YYYY'));
 });
