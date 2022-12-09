@@ -1,13 +1,18 @@
-// for loop hour 9-17
-
 $(function blockColor() {
- 
-  var saveButton = $('.saveBtn');
+  // Named variable from dayjs to use in function
   var currentHour = dayjs().hour();
- 
+  // Listening for click on the save button to save info to local storage
+  $('.saveBtn').click(function() {
+    var textInput = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+    localStorage.setItem(time, textInput);
+   
+  });
+// Looping a function to check current time again the time listed for each time block
+// to change color throughout the workday
   $('.description').each(function() {
     
-    var divTime = parseInt($(this).parent().attr('id').replace("hour-", ""));
+    var divTime = parseInt($(this).parent().attr('id'));
     if (divTime < currentHour){
       $(this).addClass('past');
     }else if(divTime == currentHour){
@@ -15,20 +20,14 @@ $(function blockColor() {
     } else{
       $(this).addClass('future');
     }
-
-  });
-
-  $(saveButton).click(function() {
-    var textInput = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("id").split("-")[1];
-    localStorage.setItem(textInput, time);
+// Getting items from local storage and reinserting on page refresh
+    var textArea = localStorage.getItem($(this).parent().attr('id'));
+    
+    $(this).val(textArea)
    
   });
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  
-  
+
+// Set the day and date in the header
   var today = dayjs();
-$('#currentDay').text(today.format('dddd, MMMM D YYYY'));
+  $('#currentDay').text(today.format('dddd, MMMM D YYYY'));
 });
