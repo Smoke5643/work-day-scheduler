@@ -15,4 +15,4 @@ This application is a work day scheduler. It can be used to keep track of tasks 
 
 Preview of the work day scheduler
 
-![image](assets/images/screenshot.png)
+![image](./assets/images/screenshot.png)
